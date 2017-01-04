@@ -1,0 +1,72 @@
+<?php
+/*
+Plugin Name: adai_hellowp
+Plugin URI: http://127.0.0.1/
+Description: Test plugin
+Version: 1.0
+Author: Adai
+Author URI: http://127.0.0.1/
+Licence: GPL
+*/
+
+#if (!class_exists("ADAI_hellowp")) {
+#    class ADAI_hellowp {
+#        function ADAI_hellowp () { // constructor
+#
+#        }
+#
+#        function addHeaderCode() {
+#
+#        }
+#    }
+#}
+#
+#if (class_exists("ADAI_hellowp")) {
+#    $adai_hellowp = new ADAI_hellowp();
+#}
+#
+#// Action and Filters
+#if (isset($adai_hellowp)) {
+#    // Actions
+#    // Filters
+#}
+add_action( 'admin_menu', 'adai_register_my_custom_menu_page' );
+function adai_register_my_custom_menu_page() {
+    add_menu_page (
+        __('Title', 'name'),
+        'Invitation Code',
+        'manage_options',
+        __DIR__ . '/php/adai_mainpage.php',
+        '',
+        plugins_url (__DIR__ . '/image/icon.png'),
+        6
+    );
+
+}
+
+function adai_hellowp_check_db() {
+    // test if table adai_invcode exists
+    // if not then create
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+    $table_name = $wpdb->prefix .'adai_invcode1';
+    if ($wpdb->get_var('show tables like '.$table_name) != $table_name) {
+        $sql = "create table $table_name (
+            id integer not null auto_increment,
+            invcode varchar(20),
+            userid  int,
+            purchase_date datetime,
+            available_times int,
+            primary key (id)
+        )ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+        require_once(ABSPATH. 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+        add_option("adai_invcode_db_version","1.0");
+        $sql1 = 'select 12345;';
+    }
+    mysql_query($sql1);
+}
+
+register_activation_hook(__FILE__, 'adai_hellowp_check_db');
+
+?>

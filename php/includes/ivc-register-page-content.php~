@@ -1,0 +1,4 @@
+<h1> This is the content of the register page</h1>
+
+<form action='' >
+    <input type="text" placeholder="">
