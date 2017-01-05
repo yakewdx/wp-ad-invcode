@@ -15,7 +15,7 @@ class ivc_purchase_page {
     }
     public function purchase_page() {
 
-        // header
+/*        // header
         $this->get_header();
 
         // form
@@ -30,7 +30,8 @@ class ivc_purchase_page {
 <?php
         // footer
         $this->get_footer();
-
+ */
+    require_once(__DIR__ . '/includes/SPAY_alipay_SDK/index.php');
     }
 
     private function get_header() {
