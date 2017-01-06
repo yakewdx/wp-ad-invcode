@@ -90,7 +90,7 @@ ul,ol{
 	display:inline-block;
 	text-align:right;
 	float:left;
-	
+
 }
 .content dd{
 	margin-left:100px;
@@ -154,7 +154,7 @@ ul,ol{
 				<li class="last">3、确认完成</li>
             </ol>
         </div>
-        <form name=alipayment action=alipayapi.php method=post target="_blank">
+        <form id="alipayment" action="" target="_blank">
             <div id="body" style="clear:left">
                 <dl class="content">
                     <dt>商户订单号：</dt>
@@ -178,12 +178,12 @@ ul,ol{
                         <span>必填
 </span>
                     </dd>
-                  
-                   
+
+
 					<dt></dt>
                     <dd>
                         <span class="new-btn-login-sp">
-                            <button class="new-btn-login" type="submit" style="text-align:center;">确 认</button>
+                            <input class="new-btn-login" type="submit" style="text-align:center;" value="确认"/>
                         </span>
                     </dd>
                 </dl>
@@ -193,7 +193,7 @@ ul,ol{
 			<ul class="foot-ul">
 				<li><font class="note-help">如果您点击“确认”按钮，即表示您同意该次的执行操作。 </font></li>
 				<li>
-				
+
 				</li>
 			</ul>
 		</div>

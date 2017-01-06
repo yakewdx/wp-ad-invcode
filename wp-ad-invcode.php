@@ -18,6 +18,15 @@ if ( ! defined ( 'WPINC' ) ) {
     die;
 }
 
+add_action('init', 'add_rules');
+function add_rules() {
+        error_log(print_r("rules added"));
+        //add_rewrite_rule('^ivc/[A-Za-z]+/?', 'wp-admin/index.php?page=$matches[1]', 'top');
+        add_rewrite_rule('^ivc/[A-Za-z]+/?', 'wp-admin/index.php', 'top');
+        add_rewrite_rule('^leaf/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top');
+    }
+
+
 require_once(__DIR__ . '/php/class-invcode-main.php');
 function adai_hellowp_page_init(){
     $invmain = new adai_invcode_main();
@@ -29,7 +38,7 @@ function adai_hellowp_check_db() {
     // if not then create
     global $wpdb, $adai_hellowp_table_name;
     $charset_collate = $wpdb->get_charset_collate();
-    if ($wpdb->get_var('show tables like '.$adai_hellowp_table_name) != $adai_hellowp_table_name) {
+    if ($wpdb->get_var('show tables like '.$adai_hellowp_table_name) == null) {
         $sql = "CREATE TABLE $adai_hellowp_table_name (
             id integer not null auto_increment,
             invcode varchar(20),
